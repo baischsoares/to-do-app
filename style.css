@@ -203,6 +203,9 @@
   .feita span{
     text-decoration: line-through;
   }
+  .concluida span{
+    text-decoration: line-through;
+  }
 
 
   @media(max-width: 400px){
@@ -217,4 +220,4 @@
     input.descricao-tarefa {
       width: 100%;
   }
-}
+  }

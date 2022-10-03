@@ -50,10 +50,10 @@ function criarTarefa(event){
 function addTarefa(){
   let text = document.querySelector('.descricao-tarefa').value;
   let data = document.querySelector('.prazo').value;
-  let erroAtivado = document.querySelector('.erroAtivado')
+  let erro = document.querySelector('.erroAtivado')
 
   if(text.length < 3 || data < 1){
-    if(!erroAtivado){
+    if(!erro){
       ativarErro()
     }
   } else {
@@ -64,7 +64,8 @@ function addTarefa(){
   removerErro()
   contagemParaFazer()
   salvarTarefas()
-  }
+}
+
 }
 
 function salvarTarefas(){
@@ -136,7 +137,6 @@ function marcarTarefa(){
  }
  }
  marcarTarefa()
-
 
 const tarefasCompletas = document.querySelector('#tarefasCompletas')
 tarefasCompletas.addEventListener('click', showCompletas)
