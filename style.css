@@ -1,0 +1,223 @@
+:root{
+  --corTexto: #e4e5f1;
+  --corBg: #181824;
+  --corBgMain: #25273c;
+  --corTitulo: #fdfbff;
+  --corTarefa: #797b90;
+  }
+  
+  .corTexto{
+    color: var(--corTexto);
+  }
+  .corBg{
+    color: var(--corBg);
+  }
+  .corBgMain{
+    color: var(--corBgMain);
+  }
+  .corTitulo{
+    color: var(--corTitulo);
+  }
+  .cortarefa{
+    color: var(--corTarefa);
+  }
+  *{
+    font-family: 'Josefin Sans', sans-serif;
+  }
+  body{
+    margin: 0;
+    padding: 0;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: var(--corBg);
+  }
+  section{
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  @media (max-width: 500px){
+    section{
+      margin: 5px;
+    }
+  }
+  ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 5px;
+    gap: 30px;
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+  ul::-webkit-scrollbar {
+    border-radius: 5px;       
+    width: 5px;
+  }
+  ul::-webkit-scrollbar-thumb {
+    background-color: #6bbbf8;
+    }
+  img{
+    max-width: 100%;
+    display: block;
+  }
+  span{
+    display: inline-block;
+    color: #8e90a9;
+  }
+  h1{
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    letter-spacing: 1.25rem;
+    
+  }
+  li{
+    font-weight: 400;
+    color: #8e90a9;
+  }
+  
+  .marca {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .form-tarefa{
+    padding: 20px;
+    border-radius: 5px;
+    background-color:  var(--corBgMain) ;
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+  }
+  input[type="radio"]{
+    height: 20px;
+    width: 20px;
+    background-color: #25273c;
+  }
+  input[type="text"]{
+    width: 60%;
+    height: 25px;
+    padding-left: 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #6bbbf8;
+    font-size: 1rem;
+    padding-bottom: 0px;
+    color: #797b90;
+  } 
+  input[type="date"]{
+    height: 25px;
+    padding: 5px 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    color: #797b90;
+  } 
+  .btnAdd{
+    height: 25px;
+    width: 25px;
+    border-radius: 51%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem;
+    font-weight:400;
+    background-color: transparent;
+    align-self: auto;
+    color: #6bbbf8;
+    border: 2px solid #6bbbf8;
+    cursor: pointer;
+  }
+  /*Lista de tarefas*/
+  .section-adicionar{
+    margin-bottom: 30px;
+  }
+  .tarefa{
+    display: flex;
+    align-items:center;
+    gap: 20px;
+    border-bottom: 1px solid #797b90;
+    padding: 20px;
+    font-size: 1.125rem;
+    justify-content: space-between;
+    cursor: pointer;
+   }
+   .tarefa-texto{
+    color: #c8cae1;
+   }
+   .tarefa-texto.feito{
+    text-decoration: line-through;
+    color: #aaa;
+   }
+   .tarefa-data{
+    font-size: 0.75rem;
+   }
+  .section-tarefas{
+    background-color:  var(--corBgMain) ;
+  }
+  .lista-tarefas{ 
+    display: none;
+  }
+  .lista-tarefas.ativo{
+    display: block;
+  }
+
+  .tarefas-completas{
+    display: none;
+  }
+  .tarefas-completas.ativo{
+    display: block;
+  }
+  .detalhes-lista{
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .detalhes-botao{
+    display: flex;
+    gap: 20px;
+  }
+  .detalhes-lista a{
+    color: #797b90;
+    cursor: pointer;
+  }
+
+  .detalhes-lista a:hover{
+    color: #6bbbf8;
+  }
+  .attribution{
+    margin-top: 40px;
+  }
+  .attribution a{
+    color: #aaa;
+  }
+  
+  .feita span{
+    text-decoration: line-through;
+  }
+  .concluida span{
+    text-decoration: line-through;
+  }
+
+
+  @media(max-width: 400px){
+    .detalhes-lista{
+      display: grid;
+      gap: 20px;
+    }
+    .form-tarefa{
+      flex-wrap: wrap; 
+      justify-content: right;
+    }
+    input.descricao-tarefa {
+      width: 100%;
+  }
+  }

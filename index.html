@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+
+  <title> To-do app</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <section class="geral">
+    <div class="marca">
+      <h1 class="corTitulo">TODO</h1>
+    </div>
+    <div class="section-adicionar">
+      <form class="form-tarefa">
+        <input type="text" placeholder="Criar nova tarefa..." class="descricao-tarefa">
+        <input type="date" required class="prazo">
+        <button class="btnAdd">+</button>
+      </form>
+    </div>
+    <div class="section-tarefas">
+
+      <ul class="lista-tarefas ativo">
+      </ul>
+      <ul class="tarefas-completas">
+      </ul>
+
+      <div class="detalhes-lista">
+        <span class="paraFazer">
+        </span>
+        <div class="detalhes-botao">
+          <a id="paraFazer">To do</a>
+          <a id="tarefasCompletas">Completed</a>
+          <a id="concluirCompletas">Clear Completed</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <script type="module" src="./script.js"></script>
+</body>
+
+</html>
