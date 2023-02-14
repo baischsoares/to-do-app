@@ -2,8 +2,9 @@
   <div class="aplicativo">
     <h1>T O D O</h1>
     <form>
-      <input type="text" placeholder="adicionarTarefa" v-model="titulo">
+      <input type="text" placeholder="Título da tarefa" v-model="titulo">
       <input type="date" v-model="prazo">
+      <p v-if="erro">Você precisa de um título e um prazo</p>
       <input type="submit" value="Adicionar" @click.prevent="adicionarTarefa">
     </form>
     <div v-if="tarefas.length">
@@ -33,24 +34,38 @@ export default {
     return {
       titulo: '',
       prazo: '',
-      tarefas: []
+      tarefas: [],
+      tarefasFeitas: [],
+      erro: false
     }
   },
   methods: {
     adicionarTarefa(){
+      if(this.titulo && this.prazo){
+        this.criarTarefa();
+        this.erro = false
+      } else {
+       this.erro = true
+      } 
+    },
+    criarTarefa(){
       let tarefa = {};
       tarefa.titulo = this.titulo;
       tarefa.prazo = this.prazo;
       tarefa.feita = false;
       this.tarefas.push(tarefa);
+      this.titulo = '';
+      this.prazo = '';
     },
     completarTarefas(tarefa){
         tarefa.feita = !tarefa.feita
-        this.tarefas = this.tarefas.filter(this.excluiTarefa);
+        this.tarefasFeitas.push(tarefa) //adiciona a tarefa feita em uma outra array
+        this.tarefas = this.tarefas.filter(this.excluiTarefa); // filtra a array para excluir a tarefa feita
     },
     excluiTarefa(tarefa){
       return tarefa.feita == false;
-    } 
+    },
+
   }
   
 }
