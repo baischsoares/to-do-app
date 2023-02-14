@@ -10,13 +10,18 @@
     <div v-if="tarefas.length">
       <ul >
       <li v-for="(tarefa, index) in tarefas" :key="index" class="tarefa">
-        <div>
+        <div :class="(diaAtual > tarefa.prazoTempo ? 'atrasada' : '' )">
           <p>{{ tarefa.prazo }}</p>
           <p>{{tarefa.titulo}}</p>
           <button @click="completarTarefas(tarefa)">Feita</button>
         </div>
       </li>
     </ul>
+    <div class="rodapezinho">
+      <p> Incompletas: {{ tarefas.length }}</p>
+      <p> Atrasadas: {{ tarefasAtrasadas.length }}</p>
+      <p> Feitas: {{ tarefasFeitas.length }}</p>
+    </div>
     </div>
   
     <p v-else>Nenhuma tarefa adicionada</p>
@@ -39,6 +44,16 @@ export default {
       erro: false
     }
   },
+  computed: {
+    diaAtual(){
+      let diaAtual = new Date().getTime();
+      return  diaAtual
+    },
+    tarefasAtrasadas(){
+      let listaAtrasadas = this.tarefas.filter(tarefa => tarefa.prazoTempo < this.diaAtual);
+      return listaAtrasadas;
+    }
+  },
   methods: {
     adicionarTarefa(){
       if(this.titulo && this.prazo){
@@ -51,11 +66,19 @@ export default {
     criarTarefa(){
       let tarefa = {};
       tarefa.titulo = this.titulo;
-      tarefa.prazo = this.prazo;
+
+      let prazo = new Date(this.prazo)
+      let dataFormatada = (( prazo.getDate() )) + "/"+ (( prazo.getMonth() )) + "/" + prazo.getFullYear();
+      tarefa.prazo = dataFormatada;
+      tarefa.prazoTempo = prazo.getTime();
+
       tarefa.feita = false;
+
       this.tarefas.push(tarefa);
+
       this.titulo = '';
       this.prazo = '';
+      console.log(this.tarefas)
     },
     completarTarefas(tarefa){
         tarefa.feita = !tarefa.feita
@@ -116,9 +139,13 @@ export default {
     display: flex;
     justify-content: space-between;
   }
-  input[type="checkbox"]{
-    height: 20px;
-    width: 20px;
-    border: none;
+  .atrasada{
+    color: red;
+  }
+  .rodapezinho{
+    display: flex;
+    gap: 20px;
+    justify-content: end;
+    padding: 10px 0px;
   }
 </style>
