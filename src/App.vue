@@ -6,16 +6,19 @@
       <input type="date" v-model="prazo">
       <input type="submit" value="Adicionar" @click.prevent="adicionarTarefa">
     </form>
-    <ul>
+    <div v-if="tarefas.length">
+      <ul >
       <li v-for="(tarefa, index) in tarefas" :key="index" class="tarefa">
-        <input type="checkbox"> 
         <div>
-          <p>{{tarefa.titulo}}</p>
           <p>{{ tarefa.prazo }}</p>
+          <p>{{tarefa.titulo}}</p>
+          <button @click="completarTarefas(tarefa)">Feita</button>
         </div>
-        
       </li>
     </ul>
+    </div>
+  
+    <p v-else>Nenhuma tarefa adicionada</p>
   </div>
  
 </template>
@@ -38,8 +41,16 @@ export default {
       let tarefa = {};
       tarefa.titulo = this.titulo;
       tarefa.prazo = this.prazo;
+      tarefa.feita = false;
       this.tarefas.push(tarefa);
-    }
+    },
+    completarTarefas(tarefa){
+        tarefa.feita = !tarefa.feita
+        this.tarefas = this.tarefas.filter(this.excluiTarefa);
+    },
+    excluiTarefa(tarefa){
+      return tarefa.feita == false;
+    } 
   }
   
 }
