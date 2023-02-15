@@ -9,30 +9,28 @@
     </form>
     <div v-if="tarefas.length">
       <ul >
-      <li v-for="(tarefa, index) in tarefas" :key="index" class="tarefa">
+      <li v-for="(tarefa, index) in tarefas" :key="index" class="tarefa tarefa-item">
         <div :class="(diaAtual < tarefa.prazoTempo ? '' : 'atrasada' )">
           <p>{{ tarefa.prazo }}</p>
           <p>{{tarefa.titulo}}</p>
-          <button @click="completarTarefas(tarefa)">Feita</button>
+          <button class="feita" @click="completarTarefas(tarefa)">Feita</button>
         </div>
       </li>
     </ul>
-    <div class="rodapezinho">
-      <p> Incompletas: {{ tarefas.length }}</p>
-      <p> Atrasadas: {{ tarefasAtrasadas.length }}</p>
-      <p> Feitas: {{ tarefasFeitas.length }}</p>
+    <div class="rodapezinho tarefa-item">
+      <p class="incompletas"> Incompletas: {{ tarefas.length }}</p>
+      <p class="atrasada"> Atrasadas: {{ tarefasAtrasadas.length }}</p>
+      <p class="completas"> Feitas: {{ tarefasFeitas.length }}</p>
     </div>
     </div>
-  
-    <p v-else>Nenhuma tarefa adicionada</p>
+    <div class="tarefa-item " v-else>
+      <p class="semTarefa" >Nenhuma tarefa adicionada</p>
+    </div>
   </div>
  
 </template>
 
 <script>
-
-
-
 export default {
   name: 'App',
   data(){
@@ -117,51 +115,92 @@ export default {
     margin: 0px;
     padding: 0px;
     font-family: 'Josefin Sans';
+    background-color: #E9E9F1 ;
   }
   ul{
     list-style: none;
+  }
+  p{
+    color: #43457e;
   }
   .aplicativo{
     box-sizing: border-box;
     margin: 150px auto;
     max-width: 500px;
-    background-color: aqua;
-    padding: 20px;
+  }
+  h1{
+    color: #3A4F7A;
   }
   form{
+    box-shadow: 10px 20px 30px rgba(0,0,0,.2);
+    border-radius: 5px;
     max-width: 100%;
     margin: 20px 0px;
     display: grid;
-    grid-template-columns: 300px auto;
-    gap: 10px;
+    grid-template-columns: 280px auto;
+    gap: 15px;
+    background-color: #fff;
+    padding: 30px;
   }
-  input{
-    padding: 8px;
+  input[type="text"],
+  input[type="date"]{
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid #3A4F7A;
+    padding: 16px 8px;
+    outline: 0px;
+    font-size: 1rem;
+    border-radius: 5px;
+    color: #3A4F7A;
   }
   input[ type="submit"]{
     grid-column: 1/-1;
+    padding: 16px 8px;
+    outline: 0px;
+    border: none;
+    background: #3A4F7A;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
   }
-  .tarefa{
-    display: flex;
-    align-items: center;
-    justify-content:flex-start;
-    gap: 20px;
-    padding: 20px 0px;
-    border-top: 1px solid #dfdfdf;
-    border-bottom: 1px solid #dfdfdf;
+  .tarefa-item{
+    padding: 30px;
+    box-shadow: 10px 15px 20px rgba(0,0,0,.1);
+    border-radius: 5px;;
+    margin-bottom: 15px;
   }
   .tarefa div {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+  }
+  .feita{
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 2px solid #428c81;
+    color: #428c81;
+    cursor: pointer;
+  }
+  .feita:hover{
+    background-color: #428c81;
+    color: #fff;
+  }
+  .completas {
+    color: #428c81;
+  }
+  .incompletas{
+    color: #fc923d;
   }
   .atrasada{
-    color: red;
+    color: #e46446;
+  }
+  .semTarefa{
+    color: #e46446;
   }
   .rodapezinho{
     display: flex;
     gap: 20px;
-    justify-content: end;
-    padding: 20px 0px 0px 0px;
+    justify-content: flex-end;
   }
 </style>
