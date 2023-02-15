@@ -46,7 +46,7 @@ export default {
   },
   computed: {
     diaAtual(){
-      let diaAtual = new Date().getTime();
+      let diaAtual = new Date().getTime() - 3*60*60*1000;
       return  diaAtual
     },
     tarefasAtrasadas(){
@@ -84,6 +84,9 @@ export default {
         tarefa.feita = !tarefa.feita
         this.tarefasFeitas.push(tarefa) //adiciona a tarefa feita em uma outra array
         this.tarefas = this.tarefas.filter(this.excluiTarefa); // filtra a array para excluir a tarefa feita
+    },
+    excluiTarefa(tarefa){
+      return !tarefa.feita
     },
     ordenarTarefas(){
       this.tarefas = this.tarefas.sort((a, b) => {
@@ -149,6 +152,6 @@ export default {
     display: flex;
     gap: 20px;
     justify-content: end;
-    padding: 10px 0px;
+    padding: 20px 0px 0px 0px;
   }
 </style>
