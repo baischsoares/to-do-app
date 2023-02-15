@@ -10,7 +10,7 @@
     <div v-if="tarefas.length">
       <ul >
       <li v-for="(tarefa, index) in tarefas" :key="index" class="tarefa">
-        <div :class="(diaAtual > tarefa.prazoTempo ? 'atrasada' : '' )">
+        <div :class="(diaAtual < tarefa.prazoTempo ? '' : 'atrasada' )">
           <p>{{ tarefa.prazo }}</p>
           <p>{{tarefa.titulo}}</p>
           <button @click="completarTarefas(tarefa)">Feita</button>
@@ -52,12 +52,13 @@ export default {
     tarefasAtrasadas(){
       let listaAtrasadas = this.tarefas.filter(tarefa => tarefa.prazoTempo < this.diaAtual);
       return listaAtrasadas;
-    }
+    },
   },
   methods: {
     adicionarTarefa(){
       if(this.titulo && this.prazo){
         this.criarTarefa();
+        this.ordenarTarefas()
         this.erro = false
       } else {
        this.erro = true
@@ -68,7 +69,7 @@ export default {
       tarefa.titulo = this.titulo;
 
       let prazo = new Date(this.prazo)
-      let dataFormatada = (( prazo.getDate() )) + "/"+ (( prazo.getMonth() )) + "/" + prazo.getFullYear();
+      let dataFormatada = (( prazo.getDate() + 1 )) + "/"+ (( prazo.getMonth() + 1  )) + "/" + prazo.getFullYear();
       tarefa.prazo = dataFormatada;
       tarefa.prazoTempo = prazo.getTime();
 
@@ -78,16 +79,18 @@ export default {
 
       this.titulo = '';
       this.prazo = '';
-      console.log(this.tarefas)
     },
     completarTarefas(tarefa){
         tarefa.feita = !tarefa.feita
         this.tarefasFeitas.push(tarefa) //adiciona a tarefa feita em uma outra array
         this.tarefas = this.tarefas.filter(this.excluiTarefa); // filtra a array para excluir a tarefa feita
     },
-    excluiTarefa(tarefa){
-      return tarefa.feita == false;
-    },
+    ordenarTarefas(){
+      this.tarefas = this.tarefas.sort((a, b) => {
+        return a.prazoTempo - b.prazoTempo;
+      })
+    }
+   
 
   }
   
