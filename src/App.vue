@@ -59,6 +59,7 @@ export default {
       if(this.titulo && this.prazo){
         this.criarTarefa();
         this.ordenarTarefas()
+        this.salvarTarefas()
         this.erro = false
       } else {
        this.erro = true
@@ -83,18 +84,27 @@ export default {
     completarTarefas(tarefa){
         tarefa.feita = !tarefa.feita
         this.tarefasFeitas.push(tarefa) //adiciona a tarefa feita em uma outra array
-        this.tarefas = this.tarefas.filter(this.excluiTarefa); // filtra a array para excluir a tarefa feita
-    },
-    excluiTarefa(tarefa){
-      return !tarefa.feita
+        this.tarefas = this.tarefas.filter(tarefa => !tarefa.feita);  // filtra a array para excluir a tarefa feita
+        this.salvarTarefas()
     },
     ordenarTarefas(){
       this.tarefas = this.tarefas.sort((a, b) => {
         return a.prazoTempo - b.prazoTempo;
       })
+    },
+    salvarTarefas(){
+      localStorage.setItem('tarefas', JSON.stringify(this.tarefas))
+      localStorage.setItem('tarefasFeitas', JSON.stringify(this.tarefasFeitas))
+    },
+    setarTarefas(){
+      if(localStorage.tarefas){
+        this.tarefas = JSON.parse(localStorage.getItem('tarefas'))
+        this.tarefasFeitas = JSON.parse(localStorage.getItem('tarefasFeitas'))
+      }
     }
-   
-
+  },
+  created(){
+    this.setarTarefas()
   }
   
 }
