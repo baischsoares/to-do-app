@@ -115,23 +115,28 @@ export default {
     margin: 0px;
     padding: 0px;
     font-family: 'Josefin Sans';
+  }
+  body{
     background-color: #E9E9F1 ;
   }
   ul{
     list-style: none;
+    max-height: 500px;
+    margin-bottom: 15px
   }
   p{
     color: #43457e;
   }
   .aplicativo{
     box-sizing: border-box;
-    margin: 150px auto;
+    margin: 60px auto;
     max-width: 500px;
   }
   h1{
     color: #3A4F7A;
   }
   form{
+    background-color: #fff;
     box-shadow: 10px 20px 30px rgba(0,0,0,.2);
     border-radius: 5px;
     max-width: 100%;
@@ -139,7 +144,6 @@ export default {
     display: grid;
     grid-template-columns: 280px auto;
     gap: 15px;
-    background-color: #fff;
     padding: 30px;
   }
   input[type="text"],
@@ -165,9 +169,11 @@ export default {
   }
   .tarefa-item{
     padding: 30px;
-    box-shadow: 10px 15px 20px rgba(0,0,0,.1);
-    border-radius: 5px;;
+    box-shadow: 5px 5px 10px rgb(0 0 0 / 10%);
+    border-radius: 5px;
     margin-bottom: 15px;
+    background: #fff
+
   }
   .tarefa div {
     width: 100%;
