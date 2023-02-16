@@ -209,4 +209,9 @@ export default {
     gap: 20px;
     justify-content: flex-end;
   }
+  @media(max-width: 720px){
+    form{
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
