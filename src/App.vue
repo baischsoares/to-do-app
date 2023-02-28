@@ -68,7 +68,7 @@ export default {
       tarefa.titulo = this.titulo;
 
       let prazo = new Date(this.prazo)
-      let dataFormatada = (( prazo.getDate() + 1 )) + "/"+ (( prazo.getMonth() + 1  )) + "/" + prazo.getFullYear();
+      let dataFormatada = prazo.getUTCDate() + "/"+ (( prazo.getMonth() + 1  )) + "/" + prazo.getFullYear();
       tarefa.prazo = dataFormatada;
       tarefa.prazoTempo = prazo.getTime();
 
